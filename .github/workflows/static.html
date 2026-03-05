@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<title>Честит 8 март</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(135deg,#ff9ac6,#ffd6e7,#ffffff);
+overflow:hidden;
+}
+
+/* TITLE */
+
+h1{
+margin-top:100px;
+font-size:70px;
+color:#c2185b;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px pink;}
+to{ text-shadow:0 0 40px #ff4da6;}
+}
+
+p{
+font-size:28px;
+}
+
+/* BUTTON */
+
+button{
+padding:18px 40px;
+font-size:22px;
+border:none;
+border-radius:12px;
+background:#ff4da6;
+color:white;
+cursor:pointer;
+transition:0.3s;
+animation:pulse 2s infinite;
+}
+
+button:hover{
+transform:scale(1.2);
+background:#e60073;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 10px pink;}
+50%{box-shadow:0 0 30px #ff4da6;}
+100%{box-shadow:0 0 10px pink;}
+}
+
+/* POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.popup-content{
+background:white;
+padding:40px;
+border-radius:20px;
+width:400px;
+margin:200px auto;
+font-size:24px;
+animation:pop 0.5s;
+}
+
+@keyframes pop{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+
+/* FLOWERS */
+
+.flower{
+position:absolute;
+top:-50px;
+font-size:30px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+/* HEARTS */
+
+.heart{
+position:absolute;
+font-size:25px;
+top:100vh;
+animation:rise 6s linear infinite;
+}
+
+@keyframes rise{
+to{
+transform:translateY(-120vh);
+}
+}
+
+/* CONFETTI */
+
+.confetti{
+position:absolute;
+width:8px;
+height:8px;
+background:red;
+top:-10px;
+animation:confettiFall 4s linear infinite;
+}
+
+@keyframes confettiFall{
+to{
+transform:translateY(110vh) rotate(720deg);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Честит 8 март 🌸</h1>
+
+<p>
+Нека този ден бъде изпълнен с любов, радост и усмивки! 💐
+</p>
+
+<br>
+
+<button onclick="surprise()">Натисни за изненада 🎁</button>
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">
+<div class="popup-content">
+
+💖 Честит празник! 💖
+<br><br>
+Нека всеки ден бъде пълен с щастие,
+усмивки и красиви моменти!
+<br><br>
+
+🌸 🌹 💐 🌺 🌷
+
+<br><br>
+
+<button onclick="closePopup()">Затвори</button>
+
+</div>
+</div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8d8c3c7f0.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* POPUP */
+
+function surprise(){
+
+document.getElementById("popup").style.display="block";
+
+document.getElementById("music").play();
+
+createConfetti();
+
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+/* FLOWERS */
+
+function createFlower(){
+
+const flower=document.createElement("div");
+flower.classList.add("flower");
+flower.innerHTML="🌸";
+
+flower.style.left=Math.random()*100+"vw";
+flower.style.animationDuration=3+Math.random()*5+"s";
+
+document.body.appendChild(flower);
+
+setTimeout(()=>{flower.remove();},8000);
+
+}
+
+setInterval(createFlower,300);
+
+/* HEARTS */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="💖";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove();},6000);
+
+}
+
+setInterval(createHeart,800);
+
+/* CONFETTI */
+
+function createConfetti(){
+
+for(let i=0;i<120;i++){
+
+const confetti=document.createElement("div");
+confetti.classList.add("confetti");
+
+confetti.style.left=Math.random()*100+"vw";
+confetti.style.background=
+"rgb("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+")";
+
+confetti.style.animationDuration=2+Math.random()*3+"s";
+
+document.body.appendChild(confetti);
+
+setTimeout(()=>{confetti.remove();},5000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
